@@ -1,7 +1,7 @@
 import React from 'react';
-import {Entypo, Feather, FontAwesome} from '@expo/vector-icons';
+import {Entypo, Feather, FontAwesome, Ionicons} from '@expo/vector-icons';
 import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 import Colors from '@src/constants/Colors';
 import { useColorScheme } from '@src/components/useColorScheme';
@@ -17,19 +17,23 @@ export default function TabLayout() {
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
         tabBarShowLabel: false,
-        headerShown: false,
-        tabBarStyle: {
-          height: 60,
-          marginHorizontal: 5,
-          marginBottom: 5,
-          borderRadius: 50,
-          backgroundColor: 'black',
-        }
+        // headerShown: false,
+        headerLeft: () => (
+          <View style={styles.headerLeft}>
+            <Ionicons name="menu" size={28} color="white" style={{alignSelf: 'center' }} />
+          </View>
+        ),
+        headerTitle: () => (
+          <Image source={require('../../../assets/images/netflix_logo.png')} style={styles.headerLeftImage} />
+        ),
+        headerTitleAlign: 'center',
+        headerStyle: styles.headerContainer,
+        tabBarStyle: styles.tabBarStyle
       }}>
       <Tabs.Screen
-        name="Home"
+        name="index"
         options={{
-          title: 'Home',
+          title: '',
           tabBarIcon: ({ color }) => <Entypo name="home" size={20} color={color} />
         }}
       />
@@ -64,3 +68,30 @@ export default function TabLayout() {
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  headerContainer: {
+    backgroundColor: 'black',
+  },
+
+  headerLeft: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 10,
+  },
+
+  headerLeftImage: { 
+    width: 70, 
+    height: 30, 
+    marginBottom: 10 
+  },
+
+  tabBarStyle: {
+    height: 60,
+    // margin: 10,
+    // borderRadius: 50,
+    backgroundColor: 'black',
+  }
+})
