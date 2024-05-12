@@ -1,5 +1,5 @@
 import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import {Entypo, Feather, FontAwesome} from '@expo/vector-icons';
 import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
 
@@ -7,51 +7,58 @@ import Colors from '@src/constants/Colors';
 import { useColorScheme } from '@src/components/useColorScheme';
 import { useClientOnlyValue } from '@src/components/useClientOnlyValue';
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
-
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: 'red',
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
+        tabBarShowLabel: false,
+        headerShown: false,
+        tabBarStyle: {
+          height: 60,
+          marginHorizontal: 5,
+          marginBottom: 5,
+          borderRadius: 50,
+          backgroundColor: 'black',
+        }
       }}>
       <Tabs.Screen
-        name="index"
+        name="Home"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
-          ),
+          title: 'Home',
+          tabBarIcon: ({ color }) => <Entypo name="home" size={20} color={color} />
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="Search"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Search',
+          tabBarIcon: ({ color }) => <Feather name="search" size={20} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="AddMovie"
+        options={{
+          title: 'Add Movie',
+          tabBarIcon: ({ color }) => <Feather name="plus" size={28} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="Favorites"
+        options={{
+          title: 'Favorites',
+          tabBarIcon: ({ color }) => <FontAwesome name="heart" size={20} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="Profile"
+        options={{
+          title: 'Profile',
+          tabBarIcon: ({ color }) => <FontAwesome name="user" size={20} color={color} />,
         }}
       />
     </Tabs>
