@@ -1,12 +1,17 @@
-import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '@src/components/EditScreenInfo';
-import { Text, View } from '@src/components/Themed';
+import Filter from '@src/components/Filter';
+import { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 export default function Index() {
+  const [activeFilter, setActiveFilter] = useState<string>('');
+
+  function onFilterItemClick(filterKey: string) {
+    setActiveFilter(filterKey);
+  }
+
   return (
     <View style={styles.container}>
-      
+      <Filter activeFilter={activeFilter} onItemClick={onFilterItemClick} />
     </View>
   );
 }
@@ -14,8 +19,7 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingHorizontal: 10,
     backgroundColor: 'black',
   },
   title: {

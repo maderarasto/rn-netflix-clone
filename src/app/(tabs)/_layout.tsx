@@ -1,11 +1,11 @@
 import React from 'react';
 import {Entypo, Feather, FontAwesome, Ionicons} from '@expo/vector-icons';
-import { Link, Tabs } from 'expo-router';
-import { Image, Pressable, StyleSheet, View } from 'react-native';
+import { Tabs } from 'expo-router';
+import { Image, StyleSheet, View } from 'react-native';
 
 import Colors from '@src/constants/Colors';
 import { useColorScheme } from '@src/components/useColorScheme';
-import { useClientOnlyValue } from '@src/components/useClientOnlyValue';
+
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
