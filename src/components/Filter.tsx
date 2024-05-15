@@ -54,7 +54,12 @@ const Filter = ({
 
   return (
     <View style={styles.filterContainer}>
-      <ScrollView style={styles.scrollContainer} endFillColor="red" horizontal>
+      <ScrollView 
+        style={styles.scrollContainer} 
+        bounces={false} 
+        alwaysBounceHorizontal={false} 
+        horizontal
+      >
         {filterItems.map((filterItem) => (
           <TouchableOpacity key={filterItem.key} onPress={() => onFilterItemClick(filterItem)}>
             <Text style={getFilterItemStyle(filterItem)} >
@@ -71,6 +76,7 @@ const styles = StyleSheet.create({
     filterContainer: {        
         justifyContent: 'center',
         height: 50,
+        marginBottom: 10,
     },
 
     scrollContainer: {

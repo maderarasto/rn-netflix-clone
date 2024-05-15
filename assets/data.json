@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Ant-Man and Wasp: Quantumania",
+        "description": "Scott Lang and Hope Van Dyne are dragged into the Quantum Realm, along with Hope's parents and Scott's daughter Cassie. Together they must find a way to escape, but what secrets is Hope's mother hiding? And who is the mysterious Kang?",
+        "imagePath": "posters/ant_man_wasp_quantumania.png",
+        "tags": [ "Action", "Adventure", "Comedy" ],
+        "rating": 6.1,
+        "reviews": 15000,
+        "views": "10M",
+        "likes": "6M",
+        "downloads": "100K",
+        "progress": 0.45
+    }
+]
