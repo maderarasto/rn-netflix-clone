@@ -6,6 +6,7 @@ import Rating from "./Rating";
 import MovieTag from "./MovieTag";
 import MovieStat from "./MovieStat";
 import { Entypo } from "@expo/vector-icons";
+import { formatNumber } from "@src/utils";
 
 type MovieSlideParams = {
   movie: Movie;
@@ -24,7 +25,12 @@ const MovieSlide = ({ movie }: MovieSlideParams) => {
       />
       <View style={{justifyContent: 'center' }}>
         <Text style={styles.movieTitle}>{movie.title}</Text>
-        <Rating value={movie.rating / 2} reviewCount={movie.reviews} />
+        <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 8 }}>
+          <Rating value={movie.rating / 2} />
+          <Text style={{ fontSize: 10, color: 'gray' }}>
+            {formatNumber(movie.reviews)} Reviews
+          </Text>
+        </View>
         <View style={{flexDirection: 'row', gap: 8, marginBottom: 10,}}>
             <MovieStat icon={<Entypo name="eye" size={14} color="gray" />} label={movie.views} />
             <MovieStat icon={<Entypo name="heart" size={14} color="gray" />} label={movie.likes} />

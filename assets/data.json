@@ -5,10 +5,22 @@
         "imagePath": "posters/ant_man_wasp_quantumania.png",
         "tags": [ "Action", "Adventure", "Comedy" ],
         "rating": 6.1,
-        "reviews": 15000,
+        "reviews": 200,
         "views": "10M",
         "likes": "6M",
         "downloads": "100K",
         "progress": 0.45
+    },
+    {
+        "title": "Avengers Infinity War",
+        "description": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.",
+        "imagePath": "posters/avengers_infinity_war.png",
+        "tags": [ "Action", "Adventure", "Sci-Fi" ],
+        "rating": 8.4,
+        "reviews": 150,
+        "views": "20M",
+        "likes": "16M",
+        "downloads": "15M",
+        "progress": 0.75
     }
 ]
