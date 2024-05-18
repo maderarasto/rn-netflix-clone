@@ -28,9 +28,7 @@ const CategoryCarousel = ({
     <View style={styles.container}>
         <View style={styles.categoryHeader}>
           <Text style={styles.categoryTitle}>{title}</Text>
-          <Link href="/" style={styles.categoryLink}>
-            View all
-          </Link>
+          <Link href="/" style={styles.categoryLink}>View all</Link>
         </View>
         <ScrollView contentContainerStyle={styles.carouselContainer} horizontal>
           {getShuffledMovies().map((movie, index) => (

@@ -1,5 +1,6 @@
 [
     {
+        "id": "b5ee9daf-1a2d-4e77-9d32-b7bd0477e6d9",
         "title": "Ant-Man and Wasp: Quantumania",
         "description": "Scott Lang and Hope Van Dyne are dragged into the Quantum Realm, along with Hope's parents and Scott's daughter Cassie. Together they must find a way to escape, but what secrets is Hope's mother hiding? And who is the mysterious Kang?",
         "imagePath": "posters/ant_man_wasp_quantumania.png",
@@ -12,6 +13,7 @@
         "progress": 0.45
     },
     {
+        "id": "e95159b7-3c2b-410a-a5a8-5e6c14e0943e",
         "title": "Avengers Infinity War",
         "description": "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.",
         "imagePath": "posters/avengers_infinity_war.png",
@@ -24,6 +26,7 @@
         "progress": 0.75
     },
     {
+        "id": "765810c9-353a-4dbe-a05f-8f6cc6a0b94a",
         "title": "Back to the Future",
         "description": "Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.",
         "imagePath": "posters/back_to_the_future.png",
@@ -35,6 +38,7 @@
         "downloads": "2M"
     },
     {
+        "id": "451f115b-dc6e-4d16-98fb-f4f8ea000bed",
         "title": "Black Panther",
         "description": "T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past.",
         "imagePath": "posters/black_panther.png",
@@ -46,6 +50,7 @@
         "downloads": "500K"
     },
     {
+        "id": "1d6c7fbe-919d-4157-a229-6af466090e43",
         "title": "Bohemian Rhapsody",
         "description": "The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).",
         "imagePath": "posters/bohemian_rhapsody.png",
@@ -57,6 +62,7 @@
         "downloads": "3M"
     },
     {
+        "id": "33f3991e-a30b-4302-a6e0-dde398dacad2",
         "title": "Free Guy",
         "description": "When Guy, a bank teller, learns that he is a non-player character in a bloodthirsty, open-world video game, he goes on to become the hero of the story and takes the responsibility of saving the world.",
         "imagePath": "posters/free_guy.png",
@@ -68,6 +74,7 @@
         "downloads": "200K"
     },
     {
+        "id": "1932a294-5080-4c5c-9a01-a7418d453976",
         "title": "Oppenheimer",
         "description": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.",
         "imagePath": "posters/oppenheimer.png",
@@ -79,6 +86,7 @@
         "downloads": "3M"
     },
     {
+        "id": "fe1e401b-1ba7-432f-ace6-84eca07b7b5f",
         "title": "Shrek",
         "description": "A mean lord exiles fairytale creatures to the swamp of a grumpy ogre, who must go on a quest and rescue a princess for the lord in order to get his land back.",
         "imagePath": "posters/shrek.png",

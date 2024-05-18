@@ -25,7 +25,7 @@ const Filter = ({
   function getFilterItemStyle(filterItem: FilterItem) {
     return {
       ...styles.filterLabel,
-      fontSize: filterItem.key === resolveActiveFilter() ? 18 : 16,
+      fontSize: filterItem.key === resolveActiveFilter() ? 18 : 14,
       color: filterItem.key === resolveActiveFilter() ? 'white' : 'gray'
     }
   }
@@ -55,6 +55,7 @@ const Filter = ({
   return (
     <View style={styles.filterContainer}>
       <ScrollView 
+        contentContainerStyle={styles.scrollContentContainer}
         style={styles.scrollContainer} 
         bounces={false} 
         alwaysBounceHorizontal={false} 
@@ -83,8 +84,12 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
 
+    scrollContentContainer: {
+      alignItems: 'center',
+      gap: 50,
+    },
+
     filterLabel: {
-        marginRight: 50,
     }
 })
 
