@@ -5,24 +5,26 @@ import { FontAwesome } from '@expo/vector-icons'
 type RatingParams = {
     value: number
     max?: number
+    iconSize?: number
 }
 
 const Rating = ({
     value,
     max = 5,
+    iconSize = 12,
 }: RatingParams) => {
   function getSequence(count: number) {
     return [...Array(count).keys()];
   }
 
   function resolveIconColor(num: number) {
-    return Math.round(value) - num > 0 ? '#ffff66' : 'gray';
+    return Math.round(value) - num > 0 ? '#eab308' : 'gray';
   }
 
   return (
     <View style={styles.ratingContainer}>
       {getSequence(max).map((num) => (
-        <FontAwesome key={`star-${num}`} name="star" size={12} color={resolveIconColor(num)} />
+        <FontAwesome key={`star-${num}`} name="star" size={iconSize} color={resolveIconColor(num)} />
       ))}
     </View>
   )

@@ -46,9 +46,14 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="AddMovie"
+        listeners={{
+          tabPress: (ev) => {
+            ev.preventDefault();
+          }
+        }}
         options={{
           title: 'Add Movie',
-          tabBarIcon: ({ color }) => <Feather name="plus" size={28} color={color} />,
+          tabBarIcon: ({ color }) => <Feather name="plus" size={28} color={color} style={{ opacity: 0.3}} />,
         }}
       />
       <Tabs.Screen

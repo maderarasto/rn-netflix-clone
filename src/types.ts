@@ -4,6 +4,9 @@ export type Movie = {
     description: string
     imagePath: string
     tags: string[]
+    year: string
+    country: string
+    length: string
     rating: number
     reviews: number
     views: string

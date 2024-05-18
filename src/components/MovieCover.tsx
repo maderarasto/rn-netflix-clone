@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     cover: {
       position: 'absolute',
       width: '100%',
+      opacity: 0.93,
     }
 });
 
