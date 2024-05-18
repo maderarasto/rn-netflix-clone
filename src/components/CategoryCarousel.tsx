@@ -1,39 +1,44 @@
-import { View, Text, ScrollView, StyleSheet } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, RegisteredStyle, TextStyle, StyleProp, ViewStyle } from 'react-native'
 import React from 'react'
 import MovieCard from './MovieCard'
 import { Link } from 'expo-router'
 import { Movie } from '@src/types'
 
 type CategoryCarouselParams = {
-    title: string
-    movies: Movie[]
+  title: string
+  containerStyle?: StyleProp<ViewStyle>
+  titleStyle?: StyleProp<TextStyle>
+  children?: React.ReactNode
 }
 
 const CategoryCarousel = ({
-    title,
-    movies,
+  title,
+  containerStyle = {},
+  titleStyle = {},
+  children,
 }: CategoryCarouselParams) => {
-    function getShuffledMovies(limit = 4) {
-        return movies.map((movie) => ({ 
-          movie, 
-          sort: Math.random() 
-        })).sort((a, b) => {
-          return a.sort - b.sort;
-        }).filter((_, index) => {
-            return index < limit;
-          }).map(({movie}) => movie);
-    }
+  function resolveContainerStyle() {
+    return {
+      ...styles.container,
+      ...(containerStyle as object),
+    };
+  }
+
+  function resolveTitleStyle() {
+    return {
+      ...styles.categoryTitle,
+      ...(titleStyle as object),
+    };
+  }
 
   return (
-    <View style={styles.container}>
+    <View style={resolveContainerStyle()}>
         <View style={styles.categoryHeader}>
-          <Text style={styles.categoryTitle}>{title}</Text>
+          <Text style={resolveTitleStyle()}>{title}</Text>
           <Link href="/" style={styles.categoryLink}>View all</Link>
         </View>
         <ScrollView contentContainerStyle={styles.carouselContainer} horizontal>
-          {getShuffledMovies().map((movie, index) => (
-            <MovieCard key={index} movie={movie} />
-          ))}
+          {children}
         </ScrollView>
     </View>
   )

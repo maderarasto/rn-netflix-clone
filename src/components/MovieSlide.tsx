@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, Dimensions } from "react-native";
+import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity } from "react-native";
 import React from "react";
 import { Movie } from "@src/types";
 import { ORIGIN } from "@src/config";
@@ -7,6 +7,7 @@ import MovieTag from "./MovieTag";
 import MovieStat from "./MovieStat";
 import { Entypo } from "@expo/vector-icons";
 import { formatNumber } from "@src/utils";
+import { useRouter } from "expo-router";
 
 type MovieSlideParams = {
   movie: Movie;
@@ -17,8 +18,14 @@ const CONTAINER_GAP = 20;
 const POSTER_WIDTH = 110;
 
 const MovieSlide = ({ movie }: MovieSlideParams) => {
+  const router = useRouter();
+
+  function onSlidePress() {
+    router.push(`/${movie.id}`);
+  }
+
   return (
-    <View style={styles.slideContainer}>
+    <TouchableOpacity style={styles.slideContainer} onPress={onSlidePress}>
       <Image
         source={{ uri: `${ORIGIN}/assets/images/${movie.imagePath}` }}
         style={styles.posterImage}
@@ -46,7 +53,7 @@ const MovieSlide = ({ movie }: MovieSlideParams) => {
           ))}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

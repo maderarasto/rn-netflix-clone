@@ -12,5 +12,6 @@ export type Movie = {
     views: string
     likes: string
     downloads: string,
-    progress?: number
+    progress?: number,
+    screenshots: string[]
 }

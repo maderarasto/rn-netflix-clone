@@ -14,6 +14,7 @@ import { Entypo, Ionicons } from '@expo/vector-icons'
 import Colors from '@src/constants/Colors'
 import Rating from '@src/components/Rating'
 import MovieDetail from '@src/components/MovieDetail'
+import CategoryCarousel from '@src/components/CategoryCarousel'
 
 
 const MovieDetails = () => {
@@ -71,23 +72,30 @@ const MovieDetails = () => {
             <Entypo name="share" size={20} color="#000" />
           </TouchableOpacity>
         </View>
-        <View style={styles.detailsContainer}>
-          <Text style={styles.movieTitle}>{movie?.title}</Text>
-          <View style={styles.tagsContainer}>
-            {movie?.tags.map((tagName, index, tags) => (
-              <>
-                <Text style={{ fontSize: 13, color: '#737373'}}>{tagName}</Text>
-                {index < (tags.length - 1) ? <View style={{ width: 1, backgroundColor: '#a3a3a3'}}></View> : ''}
-              </>
-            ))}
+        <View style={{ paddingHorizontal: 25, }}>
+          <View style={styles.detailsContainer}>
+            <Text style={styles.movieTitle}>{movie?.title}</Text>
+            <View style={styles.tagsContainer}>
+              {movie?.tags.map((tagName, index, tags) => (
+                <>
+                  <Text style={{ fontSize: 13, color: '#737373'}}>{tagName}</Text>
+                  {index < (tags.length - 1) ? <View style={{ width: 1, backgroundColor: '#a3a3a3'}}></View> : ''}
+                </>
+              ))}
+            </View>
+            <Rating value={(movie?.rating as number) /2} iconSize={20} />
+            <View style={styles.detailsRow}>
+              <MovieDetail label="Year" value={movie?.year as string} />
+              <MovieDetail label="Country" value={movie?.country as string} />
+              <MovieDetail label="Length" value={movie?.length as string} />
+            </View>
+            <Text style={styles.movieDescription}>{movie?.description}</Text>
           </View>
-          <Rating value={(movie?.rating as number) /2} iconSize={20} />
-          <View style={styles.detailsRow}>
-            <MovieDetail label="Year" value={movie?.year as string} />
-            <MovieDetail label="Country" value={movie?.country as string} />
-            <MovieDetail label="Length" value={movie?.length as string} />
-          </View>
-          <Text style={styles.movieDescription}>{movie?.description}</Text>
+          <CategoryCarousel title="Screenshots" titleStyle={{ fontWeight: 'bold', color: 'black' }}>
+              {movie?.screenshots.map((screenshotPath, index) => (
+                <Image key={`screenshot-${index}`} source={{ uri: `${ORIGIN}/assets/images/${screenshotPath}`}} style={styles.screenshotImage}  />
+              ))}
+          </CategoryCarousel>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -111,11 +119,12 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     flexDirection: 'row', 
-    justifyContent: 'space-around', 
+    justifyContent: 'space-between', 
     alignItems: 'flex-end',
     height: 80,
     marginTop: -40,
     marginBottom: 30,
+    paddingHorizontal: 25,
   },
 
   buttonPlay: {
@@ -129,6 +138,7 @@ const styles = StyleSheet.create({
 
   detailsContainer: {
     alignItems: 'center',
+    marginBottom: 20,
   },
 
   movieTitle: {
@@ -146,10 +156,8 @@ const styles = StyleSheet.create({
 
   detailsRow: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    gap: 8,
-    // width: '80%',
     marginBottom: 10,
     padding: 10,
   },
@@ -161,9 +169,17 @@ const styles = StyleSheet.create({
     borderTopColor: 'darkgray',
     borderBottomWidth: 0.75,
     borderBottomColor: 'darkgray',
-    fontSize: 9,
+    fontSize: 12,
     textAlign: 'center',
     color: 'gray',
+  },
+
+  screenshotImage: {
+    width: 150,
+    height: 90,
+    borderWidth: 1,
+    borderColor: 'darkgray',
+    borderRadius: 10
   }
 })
 

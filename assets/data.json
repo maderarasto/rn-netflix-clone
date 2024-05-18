@@ -13,7 +13,12 @@
         "views": "10M",
         "likes": "6M",
         "downloads": "100K",
-        "progress": 0.45
+        "progress": 0.45,
+        "screenshots": [
+            "screenshots/ant_man_wasp_quantumania/screenshot_1.png",
+            "screenshots/ant_man_wasp_quantumania/screenshot_2.png",
+            "screenshots/ant_man_wasp_quantumania/screenshot_3.png"
+        ]
     },
     {
         "id": "e95159b7-3c2b-410a-a5a8-5e6c14e0943e",
@@ -29,7 +34,12 @@
         "views": "20M",
         "likes": "16M",
         "downloads": "15M",
-        "progress": 0.75
+        "progress": 0.75,
+        "screenshots": [
+            "screenshots/avengers_infinity_war/screenshot_1.png",
+            "screenshots/avengers_infinity_war/screenshot_2.png",
+            "screenshots/avengers_infinity_war/screenshot_3.png"
+        ]
     },
     {
         "id": "765810c9-353a-4dbe-a05f-8f6cc6a0b94a",
@@ -44,7 +54,12 @@
         "reviews": 1500,
         "views": "10M",
         "likes": "8M",
-        "downloads": "2M"
+        "downloads": "2M",
+        "screenshots": [
+            "screenshots/back_to_future/screenshot_1.png",
+            "screenshots/back_to_future/screenshot_2.png",
+            "screenshots/back_to_future/screenshot_3.png"
+        ]
     },
     {
         "id": "451f115b-dc6e-4d16-98fb-f4f8ea000bed",
@@ -59,7 +74,12 @@
         "reviews": 3400,
         "views": "5M",
         "likes": "4M",
-        "downloads": "500K"
+        "downloads": "500K",
+        "screenshots": [
+            "screenshots/black_panther/screenshot_1.png",
+            "screenshots/black_panther/screenshot_2.png",
+            "screenshots/black_panther/screenshot_3.png"
+        ]
     },
     {
         "id": "1d6c7fbe-919d-4157-a229-6af466090e43",
@@ -74,7 +94,12 @@
         "reviews": 3500,
         "views": "15M",
         "likes": "10M",
-        "downloads": "3M"
+        "downloads": "3M",
+        "screenshots": [
+            "screenshots/bohemian_rhapsody/screenshot_1.png",
+            "screenshots/bohemian_rhapsody/screenshot_2.png",
+            "screenshots/bohemian_rhapsody/screenshot_3.png"
+        ]
     },
     {
         "id": "33f3991e-a30b-4302-a6e0-dde398dacad2",
@@ -89,7 +114,12 @@
         "reviews": 2100,
         "views": "5M",
         "likes": "2M",
-        "downloads": "200K"
+        "downloads": "200K",
+        "screenshots": [
+            "screenshots/free_guy/screenshot_1.png",
+            "screenshots/free_guy/screenshot_2.png",
+            "screenshots/free_guy/screenshot_3.png"
+        ]
     },
     {
         "id": "1932a294-5080-4c5c-9a01-a7418d453976",
@@ -104,7 +134,12 @@
         "reviews": 4100,
         "views": "10M",
         "likes": "9M",
-        "downloads": "3M"
+        "downloads": "3M",
+        "screenshots": [
+            "screenshots/oppenheimer/screenshot_1.png",
+            "screenshots/oppenheimer/screenshot_2.png",
+            "screenshots/oppenheimer/screenshot_3.png"
+        ]
     },
     {
         "id": "fe1e401b-1ba7-432f-ace6-84eca07b7b5f",
@@ -119,6 +154,11 @@
         "reviews": 1200,
         "views": "1M",
         "likes": "500K",
-        "downloads": "200K"
+        "downloads": "200K",
+        "screenshots": [
+            "screenshots/shrek/screenshot_1.png",
+            "screenshots/shrek/screenshot_2.png",
+            "screenshots/shrek/screenshot_3.png"
+        ]
     }
 ]
