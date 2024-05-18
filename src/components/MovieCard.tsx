@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 
     movieGenre: {
         marginBottom: 5,
-        fontSize: 12,
+        fontSize: 11,
         color: 'red',
     }
 })

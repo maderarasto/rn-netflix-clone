@@ -2,16 +2,17 @@ import Filter from '@src/components/Filter';
 import MovieSlide from '@src/components/MovieSlide';
 import { useState } from 'react';
 import { Text, ScrollView, StyleSheet, View, Dimensions } from 'react-native';
-import * as movies from '../../../assets/data.json';
-import { Link } from 'expo-router';
-import { FontAwesome } from '@expo/vector-icons';
-import MovieCard from '@src/components/MovieCard';
+import movies from '../../../assets/data.json';
+import CategoryCarousel from '@src/components/CategoryCarousel';
 
 export default function Index() {
   const [activeFilter, setActiveFilter] = useState<string>('');
 
   function getUnfinishedMovies() {
-    return Object.values(movies).filter((movie) => {
+    return movies.filter((movie) => {
+      if (!movie.progress)
+        return false;
+
       return movie.progress > 0 && movie.progress < 1;
     })
   }
@@ -21,7 +22,7 @@ export default function Index() {
   }
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Filter activeFilter={activeFilter} onItemClick={onFilterItemClick} />
       <View style={{ marginBottom: 25, }}>
         <Text style={{ marginBottom: 25, fontSize: 16, color: 'white'}}>Continue Watching</Text>
@@ -31,20 +32,9 @@ export default function Index() {
           ))}
         </ScrollView>
       </View>
-      <View>
-        <View style={styles.categoryHeader}>
-          <Text style={{  fontSize: 16, color: 'white'}}>Recommended for You</Text>
-          <Link href="/" style={styles.categoryLink}>
-            View all
-          </Link>
-        </View>
-        <ScrollView contentContainerStyle={{gap: 12}} horizontal>
-          {getUnfinishedMovies().map(movie => (
-            <MovieCard movie={movie} />
-          ))}
-        </ScrollView>
-      </View>
-    </View>
+      <CategoryCarousel title="Recommended for You" movies={movies} />
+      <CategoryCarousel title="Favorite Series" movies={movies} />
+    </ScrollView>
   );
 }
 
@@ -58,16 +48,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-
-  categoryHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 15,
-  },
-
-  categoryLink: {
-    fontSize: 14,
-    color: 'red'
-  }
 });

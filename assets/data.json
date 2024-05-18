@@ -22,5 +22,71 @@
         "likes": "16M",
         "downloads": "15M",
         "progress": 0.75
+    },
+    {
+        "title": "Back to the Future",
+        "description": "Marty McFly, a 17-year-old high school student, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the maverick scientist Doc Brown.",
+        "imagePath": "posters/back_to_the_future.png",
+        "tags": [ "Adventure", "Comedy", "Sci-Fi" ],
+        "rating": 8.5,
+        "reviews": 350,
+        "views": "10M",
+        "likes": "8M",
+        "downloads": "2M"
+    },
+    {
+        "title": "Black Panther",
+        "description": "T'Challa, heir to the hidden but advanced kingdom of Wakanda, must step forward to lead his people into a new future and must confront a challenger from his country's past.",
+        "imagePath": "posters/black_panther.png",
+        "tags": [ "Action", "Adventure", "Sci-Fi" ],
+        "rating": 7.3,
+        "reviews": 200,
+        "views": "5M",
+        "likes": "4M",
+        "downloads": "500K"
+    },
+    {
+        "title": "Bohemian Rhapsody",
+        "description": "The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).",
+        "imagePath": "posters/bohemian_rhapsody.png",
+        "tags": [ "Biography", "Drama", "Music" ],
+        "rating": 7.9,
+        "reviews": 400,
+        "views": "15M",
+        "likes": "10M",
+        "downloads": "3M"
+    },
+    {
+        "title": "Free Guy",
+        "description": "When Guy, a bank teller, learns that he is a non-player character in a bloodthirsty, open-world video game, he goes on to become the hero of the story and takes the responsibility of saving the world.",
+        "imagePath": "posters/free_guy.png",
+        "tags": [ "Action", "Adventure", "Comedy" ],
+        "rating": 7.1,
+        "reviews": 200,
+        "views": "5M",
+        "likes": "2M",
+        "downloads": "200K"
+    },
+    {
+        "title": "Oppenheimer",
+        "description": "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.",
+        "imagePath": "posters/oppenheimer.png",
+        "tags": [ "Biography", "Drama", "History" ],
+        "rating": 8.3,
+        "reviews": 500,
+        "views": "10M",
+        "likes": "9M",
+        "downloads": "3M"
+    },
+    {
+        "title": "Shrek",
+        "description": "A mean lord exiles fairytale creatures to the swamp of a grumpy ogre, who must go on a quest and rescue a princess for the lord in order to get his land back.",
+        "imagePath": "posters/shrek.png",
+        "tags": [ "Animation", "Adventure", "Comedy" ],
+        "rating": 7.9,
+        "reviews": 150,
+        "views": "1M",
+        "likes": "500K",
+        "downloads": "200K"
     }
 ]
