@@ -1,4 +1,4 @@
-import { Text, StyleSheet, ScrollView, TouchableOpacity, Image, View } from 'react-native'
+import { Text, StyleSheet, ScrollView, TouchableOpacity, Image, View, NativeModules } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -23,6 +23,7 @@ const MovieDetails = () => {
 
   const galleryRef = useRef<MovieGalleryMethods>(null);
   const {id} = useLocalSearchParams();
+  const {StatusBarManager} = NativeModules;
   const router = useRouter();
 
   useEffect(() => {
@@ -48,26 +49,33 @@ const MovieDetails = () => {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
+      <SafeAreaView style={{ position: 'relative'}}>
         <StatusBar style="light"  backgroundColor="black" />
         <Stack.Screen options={{
           headerShown: false,
         }} />
+        <PageHeader options={{
+            headerStyle: {
+              position: 'absolute',
+              top: StatusBarManager.HEIGHT,
+              left: 0,
+              width: '100%',
+              zIndex: 10,
+            },
+            headerLeft: () => (
+              <TouchableOpacity onPress={onBackPress}>
+                <Feather name="chevron-left" size={28} color="white" />
+              </TouchableOpacity>
+            ),
+            headerTitle: () => (
+              <Image source={require('../../assets/images/netflix_logo.png')} style={styles.headerTitleImage} />
+            ),
+            headerRight: () => (
+              <Ionicons name="heart-outline" size={28} color={Colors.light.primary} />
+            )
+        }} />
         <ScrollView contentContainerStyle={styles.scrollContentContainer}>
           <MovieCover imageSource={{ uri: `${ORIGIN}/assets/images/${movie?.imagePath}`}}>
-            <PageHeader options={{
-              headerLeft: () => (
-                <TouchableOpacity onPress={onBackPress}>
-                  <Feather name="chevron-left" size={28} color="white" />
-                </TouchableOpacity>
-              ),
-              headerTitle: () => (
-                <Image source={require('../../assets/images/netflix_logo.png')} style={styles.headerTitleImage} />
-              ),
-              headerRight: () => (
-                <Ionicons name="heart-outline" size={28} color={Colors.light.primary} />
-              )
-            }} />
           </MovieCover>
           <View style={styles.buttonContainer}>
             <TouchableOpacity disabled style={{opacity: 0.3}}>
@@ -101,8 +109,8 @@ const MovieDetails = () => {
             </View>
             <CategoryCarousel title="Screenshots" titleStyle={{ fontWeight: 'bold', color: 'black' }}>
                 {movie?.screenshots.map((screenshotPath, index) => (
-                  <TouchableOpacity onPress={() => openScreenshot(index)}>
-                    <Image key={`screenshot-${index}`} source={{ uri: `${ORIGIN}/assets/images/${screenshotPath}`}} style={styles.screenshotImage}  />
+                  <TouchableOpacity key={`screenshot-${index}`} onPress={() => openScreenshot(index)}>
+                    <Image source={{ uri: `${ORIGIN}/assets/images/${screenshotPath}`}} style={styles.screenshotImage}  />
                   </TouchableOpacity>
                 ))}
             </CategoryCarousel>

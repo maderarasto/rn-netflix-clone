@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, ViewStyle, RegisteredStyle } from 'react-native'
+import { View, Text, StyleSheet, ViewStyle, RegisteredStyle, StyleProp } from 'react-native'
 import React from 'react'
 
 type HeaderOptions = {
-  height?: number,
+  headerStyle?: StyleProp<ViewStyle>
   headerTitle?: () => React.JSX.Element
   headerRight?: () => React.JSX.Element
   headerLeft?: () => React.JSX.Element
@@ -12,16 +12,22 @@ type PageHeaderParams = {
   options?: HeaderOptions
 }
 
-const HEADER_HEIGHT_DEFAULT = 55;
-
 const PageHeader = ({
   options = {}
 }: PageHeaderParams) => {
   function resolveHeaderStyle() {
-    return {
+    let style = {
       ...styles.headerContainer,
-      height: options.height ?? HEADER_HEIGHT_DEFAULT
     }
+
+    if (options.headerStyle) {
+      style = {
+        ...style,
+        ...(options.headerStyle as object)
+      }
+    }
+
+    return style;
   }
   return (
     <View style={resolveHeaderStyle()}>
