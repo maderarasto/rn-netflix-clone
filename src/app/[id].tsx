@@ -1,5 +1,5 @@
 import { Text, StyleSheet, ScrollView, TouchableOpacity, Image, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import MovieCover from '@src/components/MovieCover'
@@ -15,10 +15,13 @@ import Colors from '@src/constants/Colors'
 import Rating from '@src/components/Rating'
 import MovieDetail from '@src/components/MovieDetail'
 import CategoryCarousel from '@src/components/CategoryCarousel'
+import MovieGallery, { MovieGalleryMethods } from '@src/components/MovieGallery'
 
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState<Movie|null>(null);
+
+  const galleryRef = useRef<MovieGalleryMethods>(null);
   const {id} = useLocalSearchParams();
   const router = useRouter();
 
@@ -39,66 +42,75 @@ const MovieDetails = () => {
     router.back();
   }
 
+  function openScreenshot(screenshotIndex: number) {
+    galleryRef.current?.openGallery(screenshotIndex);
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="light"  backgroundColor="black" />
-      <Stack.Screen options={{
-        headerShown: false,
-      }} />
-      <ScrollView contentContainerStyle={styles.scrollContentContainer}>
-        <MovieCover imageSource={{ uri: `${ORIGIN}/assets/images/${movie?.imagePath}`}}>
-          <PageHeader options={{
-            headerLeft: () => (
-              <TouchableOpacity onPress={onBackPress}>
-                <Feather name="chevron-left" size={28} color="white" />
-              </TouchableOpacity>
-            ),
-            headerTitle: () => (
-              <Image source={require('../../assets/images/netflix_logo.png')} style={styles.headerTitleImage} />
-            ),
-            headerRight: () => (
-              <Ionicons name="heart-outline" size={28} color={Colors.light.primary} />
-            )
-          }} />
-        </MovieCover>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity disabled style={{opacity: 0.3}}>
-            <Entypo name="plus" size={20} color="#000" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonPlay}>
-            <Ionicons name="play" size={28} color={Colors.light.primary} style={{ marginLeft: 2}} />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Entypo name="share" size={20} color="#000" />
-          </TouchableOpacity>
-        </View>
-        <View style={{ paddingHorizontal: 25, }}>
-          <View style={styles.detailsContainer}>
-            <Text style={styles.movieTitle}>{movie?.title}</Text>
-            <View style={styles.tagsContainer}>
-              {movie?.tags.map((tagName, index, tags) => (
-                <>
-                  <Text style={{ fontSize: 13, color: '#737373'}}>{tagName}</Text>
-                  {index < (tags.length - 1) ? <View style={{ width: 1, backgroundColor: '#a3a3a3'}}></View> : ''}
-                </>
-              ))}
-            </View>
-            <Rating value={(movie?.rating as number) /2} iconSize={20} />
-            <View style={styles.detailsRow}>
-              <MovieDetail label="Year" value={movie?.year as string} />
-              <MovieDetail label="Country" value={movie?.country as string} />
-              <MovieDetail label="Length" value={movie?.length as string} />
-            </View>
-            <Text style={styles.movieDescription}>{movie?.description}</Text>
+    <View style={styles.container}>
+      <SafeAreaView>
+        <StatusBar style="light"  backgroundColor="black" />
+        <Stack.Screen options={{
+          headerShown: false,
+        }} />
+        <ScrollView contentContainerStyle={styles.scrollContentContainer}>
+          <MovieCover imageSource={{ uri: `${ORIGIN}/assets/images/${movie?.imagePath}`}}>
+            <PageHeader options={{
+              headerLeft: () => (
+                <TouchableOpacity onPress={onBackPress}>
+                  <Feather name="chevron-left" size={28} color="white" />
+                </TouchableOpacity>
+              ),
+              headerTitle: () => (
+                <Image source={require('../../assets/images/netflix_logo.png')} style={styles.headerTitleImage} />
+              ),
+              headerRight: () => (
+                <Ionicons name="heart-outline" size={28} color={Colors.light.primary} />
+              )
+            }} />
+          </MovieCover>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity disabled style={{opacity: 0.3}}>
+              <Entypo name="plus" size={20} color="#000" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.buttonPlay}>
+              <Ionicons name="play" size={28} color={Colors.light.primary} style={{ marginLeft: 2}} />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Entypo name="share" size={20} color="#000" />
+            </TouchableOpacity>
           </View>
-          <CategoryCarousel title="Screenshots" titleStyle={{ fontWeight: 'bold', color: 'black' }}>
-              {movie?.screenshots.map((screenshotPath, index) => (
-                <Image key={`screenshot-${index}`} source={{ uri: `${ORIGIN}/assets/images/${screenshotPath}`}} style={styles.screenshotImage}  />
-              ))}
-          </CategoryCarousel>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+          <View style={{ paddingHorizontal: 25, }}>
+            <View style={styles.detailsContainer}>
+              <Text style={styles.movieTitle}>{movie?.title}</Text>
+              <View style={styles.tagsContainer}>
+                {movie?.tags.map((tagName, index, tags) => (
+                  <>
+                    <Text key={`tag-${index}`} style={{ fontSize: 13, color: '#737373'}}>{tagName}</Text>
+                    {index < (tags.length - 1) ? <View key={`divider-${index}`} style={{ width: 1, backgroundColor: '#a3a3a3'}}></View> : ''}
+                  </>
+                ))}
+              </View>
+              <Rating value={(movie?.rating as number) /2} iconSize={20} />
+              <View style={styles.detailsRow}>
+                <MovieDetail label="Year" value={movie?.year as string} />
+                <MovieDetail label="Country" value={movie?.country as string} />
+                <MovieDetail label="Length" value={movie?.length as string} />
+              </View>
+              <Text style={styles.movieDescription}>{movie?.description}</Text>
+            </View>
+            <CategoryCarousel title="Screenshots" titleStyle={{ fontWeight: 'bold', color: 'black' }}>
+                {movie?.screenshots.map((screenshotPath, index) => (
+                  <TouchableOpacity onPress={() => openScreenshot(index)}>
+                    <Image key={`screenshot-${index}`} source={{ uri: `${ORIGIN}/assets/images/${screenshotPath}`}} style={styles.screenshotImage}  />
+                  </TouchableOpacity>
+                ))}
+            </CategoryCarousel>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+      <MovieGallery ref={galleryRef} movie={movie as Movie} />
+    </View>
   )
 }
 
