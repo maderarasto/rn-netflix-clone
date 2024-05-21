@@ -1,4 +1,4 @@
-import { Text, StyleSheet, ScrollView, TouchableOpacity, Image, View, NativeModules } from 'react-native'
+import { Text, StyleSheet, ScrollView, TouchableOpacity, Image, View, NativeModules, NativeSyntheticEvent, NativeScrollEvent, StyleProp, ViewStyle } from 'react-native'
 import React, { useEffect, useRef, useState } from 'react'
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -20,6 +20,7 @@ import { ORIGIN } from '@src/config'
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState<Movie|null>(null);
+  const [scrollDown, setScrollDown] = useState(false);
 
   const galleryRef = useRef<MovieGalleryMethods>(null);
   const {id} = useLocalSearchParams();
@@ -39,8 +40,30 @@ const MovieDetails = () => {
     setMovie(foundMovie);
   }, []);
 
+  function resolveHeaderStyle() {
+    const headerStyle: StyleProp<ViewStyle> = {
+      position: 'absolute',
+      top: StatusBarManager.HEIGHT,
+      left: 0,
+      width: '100%',
+      zIndex: 10,
+    };
+
+    if (scrollDown) {
+      headerStyle.backgroundColor = 'rgba(0, 0, 0, 0.25)';
+    }
+
+    return headerStyle;
+  }
+
   function onBackPress() {
     router.back();
+  }
+
+  function onScroll(ev: NativeSyntheticEvent<NativeScrollEvent>) {
+
+
+    setScrollDown(ev.nativeEvent.contentOffset.y > 0);
   }
 
   function openScreenshot(screenshotIndex: number) {
@@ -55,13 +78,7 @@ const MovieDetails = () => {
           headerShown: false,
         }} />
         <PageHeader options={{
-            headerStyle: {
-              position: 'absolute',
-              top: StatusBarManager.HEIGHT,
-              left: 0,
-              width: '100%',
-              zIndex: 10,
-            },
+            headerStyle: resolveHeaderStyle(),
             headerLeft: () => (
               <TouchableOpacity onPress={onBackPress}>
                 <Feather name="chevron-left" size={28} color="white" />
@@ -74,7 +91,7 @@ const MovieDetails = () => {
               <Ionicons name="heart-outline" size={28} color={Colors.light.primary} />
             )
         }} />
-        <ScrollView contentContainerStyle={styles.scrollContentContainer}>
+        <ScrollView contentContainerStyle={styles.scrollContentContainer} onScroll={onScroll}>
           <MovieCover imageSource={{ uri: `${ORIGIN}/assets/images/${movie?.imagePath}`}}>
           </MovieCover>
           <View style={styles.buttonContainer}>

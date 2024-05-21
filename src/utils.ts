@@ -8,3 +8,12 @@ export function formatNumber(num: number, locale: Intl.LocalesArgument = 'en') {
 export function resolveImagePath(filePath: string) {
     return `${ORIGIN}/assets/images/${filePath}`;
 }
+
+export function shuffleItems(items: any[]) {
+    return items.map((item) => ({ 
+        item, 
+        sort: Math.random() 
+    })).sort((a, b) => {
+        return a.sort - b.sort;
+    }).map(({item}) => item);
+}

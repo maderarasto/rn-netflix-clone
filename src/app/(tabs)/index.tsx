@@ -8,6 +8,8 @@ import MovieCard from '@src/components/MovieCard';
 import { Fontisto } from '@expo/vector-icons';
 import Colors from '@src/constants/Colors';
 import { Link } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { shuffleItems } from '@src/utils';
 
 export default function Index() {
   const [activeFilter, setActiveFilter] = useState<string>('');
@@ -21,23 +23,13 @@ export default function Index() {
     })
   }
 
-  function getShuffledMovies(limit = 4) {
-    return movies.map((movie) => ({ 
-      movie, 
-      sort: Math.random() 
-    })).sort((a, b) => {
-      return a.sort - b.sort;
-    }).filter((_, index) => {
-      return index < limit;
-    }).map(({movie}) => movie);
-  }
-
   function onFilterItemClick(filterKey: string) {
     setActiveFilter(filterKey);
   }
 
   return (
     <ScrollView style={styles.container}>
+      <StatusBar style="light" />
       <Filter activeFilter={activeFilter} onItemClick={onFilterItemClick} />
       <View style={{ marginBottom: 25, }}>
         <Text style={{ marginBottom: 25, fontSize: 16, color: 'white'}}>Continue Watching</Text>
@@ -53,7 +45,7 @@ export default function Index() {
           <Link href="/category/recommended-for-you" style={{ fontSize: 14, color: Colors.light.primary }}>View all</Link>
         </>
       )}>
-        {getShuffledMovies().map((movie, index) => (
+        {shuffleItems(movies).slice(4).map((movie, index) => (
             <MovieCard key={`recommended-${index}`} movie={movie} />
         ))}
       </CategoryCarousel>
@@ -63,7 +55,7 @@ export default function Index() {
           <Link href="/category/favorite-series" style={{ fontSize: 14, color: Colors.light.primary }}>View all</Link>
         </>
       )}>
-        {getShuffledMovies().map((movie, index) => (
+        {shuffleItems(movies).slice(4).map((movie, index) => (
             <MovieCard key={`favorite-${index}`} movie={movie} />
         ))}
       </CategoryCarousel>

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Entypo, Feather, FontAwesome, Ionicons} from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import { Image, StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, ToastAndroid, View } from 'react-native';
 
 import Colors from '@src/constants/Colors';
 import { useColorScheme } from '@src/components/useColorScheme';
@@ -65,9 +65,14 @@ export default function TabLayout() {
       />
       <Tabs.Screen
         name="Profile"
+        listeners={{
+          tabPress: (ev) => {
+            ev.preventDefault();
+          }
+        }}
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <FontAwesome name="user" size={20} color={color} />,
+          tabBarIcon: ({ color }) => <FontAwesome name="user" size={20} color={color} style={{ opacity: 0.3 }} />,
         }}
       />
     </Tabs>
