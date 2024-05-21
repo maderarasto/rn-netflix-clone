@@ -129,7 +129,7 @@ const MovieGallery = forwardRef<MovieGalleryMethods, MovieGalleryParams>(({
             <TouchableOpacity onPress={() => changeCurrentIndex(item.index)}>
               <Image source={{ uri: resolveImagePath(item.item)}} style={resolveImageStyle(item.index)} />
             </TouchableOpacity>
-          )} horizontal contentContainerStyle={{ columnGap: 5, }} />
+          )} horizontal contentContainerStyle={{ columnGap: 5, /*transform: [ { translateX: screenDimensions.width / 2 - 40 - currentIndex * 80 }]*/}} />
       </Pressable>
     </Pressable>
   )

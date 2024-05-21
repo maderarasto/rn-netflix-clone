@@ -6,8 +6,6 @@ import MovieCover from '@src/components/MovieCover'
 import { StatusBar } from 'expo-status-bar'
 import { Movie } from '@src/types'
 
-import movies from '../../assets/data.json';
-import { ORIGIN } from '@src/config'
 import PageHeader from '@src/components/PageHeader'
 import Feather from '@expo/vector-icons/build/Feather'
 import { Entypo, Ionicons } from '@expo/vector-icons'
@@ -17,6 +15,8 @@ import MovieDetail from '@src/components/MovieDetail'
 import CategoryCarousel from '@src/components/CategoryCarousel'
 import MovieGallery, { MovieGalleryMethods } from '@src/components/MovieGallery'
 
+import movies from '../../assets/data.json';
+import { ORIGIN } from '@src/config'
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState<Movie|null>(null);
@@ -107,7 +107,9 @@ const MovieDetails = () => {
               </View>
               <Text style={styles.movieDescription}>{movie?.description}</Text>
             </View>
-            <CategoryCarousel title="Screenshots" titleStyle={{ fontWeight: 'bold', color: 'black' }}>
+            <CategoryCarousel header={() => (
+              <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }} />
+            )}>
                 {movie?.screenshots.map((screenshotPath, index) => (
                   <TouchableOpacity key={`screenshot-${index}`} onPress={() => openScreenshot(index)}>
                     <Image source={{ uri: `${ORIGIN}/assets/images/${screenshotPath}`}} style={styles.screenshotImage}  />

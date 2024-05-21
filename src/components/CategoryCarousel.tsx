@@ -1,20 +1,20 @@
 import { View, Text, ScrollView, StyleSheet, RegisteredStyle, TextStyle, StyleProp, ViewStyle } from 'react-native'
 import React from 'react'
 import MovieCard from './MovieCard'
-import { Link } from 'expo-router'
+import { Href, Link, LinkProps } from 'expo-router'
 import { Movie } from '@src/types'
 
 type CategoryCarouselParams = {
-  title: string
   containerStyle?: StyleProp<ViewStyle>
-  titleStyle?: StyleProp<TextStyle>
+  header?: () => React.JSX.Element
   children?: React.ReactNode
 }
 
 const CategoryCarousel = ({
   title,
+  href = '/',
   containerStyle = {},
-  titleStyle = {},
+  header,
   children,
 }: CategoryCarouselParams) => {
   function resolveContainerStyle() {
@@ -24,18 +24,10 @@ const CategoryCarousel = ({
     };
   }
 
-  function resolveTitleStyle() {
-    return {
-      ...styles.categoryTitle,
-      ...(titleStyle as object),
-    };
-  }
-
   return (
     <View style={resolveContainerStyle()}>
         <View style={styles.categoryHeader}>
-          <Text style={resolveTitleStyle()}>{title}</Text>
-          <Link href="/" style={styles.categoryLink}>View all</Link>
+          { header ? header() : ''}
         </View>
         <ScrollView contentContainerStyle={styles.carouselContainer} horizontal>
           {children}
@@ -54,17 +46,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 15,
-    },
-
-    categoryTitle: {
-        fontSize: 16,
-        color: 'white',
-    },
-    
-    categoryLink: {
-        fontSize: 14,
-        color: 'red'
-    },
+    },    
 
     carouselContainer: {
         gap: 12,

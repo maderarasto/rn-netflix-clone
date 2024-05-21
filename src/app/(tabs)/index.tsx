@@ -5,6 +5,9 @@ import { Text, ScrollView, StyleSheet, View, Dimensions } from 'react-native';
 import movies from '../../../assets/data.json';
 import CategoryCarousel from '@src/components/CategoryCarousel';
 import MovieCard from '@src/components/MovieCard';
+import { Fontisto } from '@expo/vector-icons';
+import Colors from '@src/constants/Colors';
+import { Link } from 'expo-router';
 
 export default function Index() {
   const [activeFilter, setActiveFilter] = useState<string>('');
@@ -44,12 +47,22 @@ export default function Index() {
           ))}
         </ScrollView>
       </View>
-      <CategoryCarousel title="Recommended for You">
+      <CategoryCarousel header={() => (
+        <>
+          <Text style={{ fontSize: 16, color: 'white'}}>Recommended for You</Text>
+          <Link href="/category/recommended-for-you" style={{ fontSize: 14, color: Colors.light.primary }}>View all</Link>
+        </>
+      )}>
         {getShuffledMovies().map((movie, index) => (
             <MovieCard key={`recommended-${index}`} movie={movie} />
         ))}
       </CategoryCarousel>
-      <CategoryCarousel title="Favorite Series">
+      <CategoryCarousel header={() => (
+        <>
+          <Text style={{ fontSize: 16, color: 'white'}}>Favorite Series</Text>
+          <Link href="/category/favorite-series" style={{ fontSize: 14, color: Colors.light.primary }}>View all</Link>
+        </>
+      )}>
         {getShuffledMovies().map((movie, index) => (
             <MovieCard key={`favorite-${index}`} movie={movie} />
         ))}
