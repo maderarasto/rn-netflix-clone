@@ -110,10 +110,7 @@ const MovieDetails = () => {
               <Text style={styles.movieTitle}>{movie?.title}</Text>
               <View style={styles.tagsContainer}>
                 {movie?.tags.map((tagName, index, tags) => (
-                  <>
-                    <Text key={`tag-${index}`} style={{ fontSize: 13, color: '#737373'}}>{tagName}</Text>
-                    {index < (tags.length - 1) ? <View key={`divider-${index}`} style={{ width: 1, backgroundColor: '#a3a3a3'}}></View> : ''}
-                  </>
+                  <Text key={`tag-${index}`} style={{ fontSize: 13, color: '#737373'}}>{tagName + (index < (tags.length - 1) ? ' | ' : '')}</Text>
                 ))}
               </View>
               <Rating value={(movie?.rating as number) /2} iconSize={20} />
@@ -125,7 +122,7 @@ const MovieDetails = () => {
               <Text style={styles.movieDescription}>{movie?.description}</Text>
             </View>
             <CategoryCarousel header={() => (
-              <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black' }} />
+              <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'black'}}>Screenshots</Text>
             )}>
                 {movie?.screenshots.map((screenshotPath, index) => (
                   <TouchableOpacity key={`screenshot-${index}`} onPress={() => openScreenshot(index)}>

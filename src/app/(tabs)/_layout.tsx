@@ -18,11 +18,6 @@ export default function TabLayout() {
         // to prevent a hydration error in React Navigation v6.
         tabBarShowLabel: false,
         // headerShown: false,
-        headerLeft: () => (
-          <View style={styles.headerLeft}>
-            <Ionicons name="menu" size={28} color="white" style={{alignSelf: 'center' }} />
-          </View>
-        ),
         headerTitle: () => (
           <Image source={require('../../../assets/images/netflix_logo.png')} style={styles.headerLeftImage} />
         ),
