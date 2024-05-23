@@ -1,21 +1,30 @@
 import MovieCard from '@src/components/MovieCard';
+import { useAsyncStorage } from '@src/hooks/useAsyncStorage';
 import { Movie } from '@src/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, ScrollView, Dimensions } from 'react-native';
 
+import movies from '../../../assets/data.json';
+
 export default function Favorites() {
-  const [favorites, setFavorites] = useState<Movie[]>([]);
+  const [favoriteIds, setFavoriteIds] = useAsyncStorage<string[]>('favorites', []);
+
+  function getFavorites() {
+    return favoriteIds ? movies.filter((movie) => favoriteIds.includes(movie.id)) : [];
+  }
+
+  console.log(getFavorites());
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Favorites</Text>
-      {favorites.length === 0 ? (
+      {getFavorites().length === 0 ? (
         <View style={styles.messageOverlay}>
           <Text style={{ color: '#aaa' }}>No favorites added.</Text> 
         </View>
       ) : ''}
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: 16, }}>
-        {favorites.map((movie, index) => (
+        {getFavorites().map((movie, index) => (
           <MovieCard key={`movie-${index}`} movie={movie} />
         ))}
       </View>

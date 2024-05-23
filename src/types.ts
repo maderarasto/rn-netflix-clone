@@ -14,4 +14,6 @@ export type Movie = {
     downloads: string,
     progress?: number,
     screenshots: string[]
-}
+};
+
+export type Nullable<T> = T | null;

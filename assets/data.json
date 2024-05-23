@@ -94,6 +94,7 @@
         "reviews": 3500,
         "views": "15M",
         "likes": "10M",
+        "favorite": true,
         "downloads": "3M",
         "screenshots": [
             "screenshots/bohemian_rhapsody/screenshot_1.png",
@@ -134,6 +135,7 @@
         "reviews": 4100,
         "views": "10M",
         "likes": "9M",
+        "favorite": true,
         "downloads": "3M",
         "screenshots": [
             "screenshots/oppenheimer/screenshot_1.png",

@@ -1,6 +1,6 @@
 import Filter from '@src/components/Filter';
 import MovieSlide from '@src/components/MovieSlide';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Text, ScrollView, StyleSheet, View, Dimensions } from 'react-native';
 import movies from '../../../assets/data.json';
 import CategoryCarousel from '@src/components/CategoryCarousel';
@@ -10,9 +10,21 @@ import Colors from '@src/constants/Colors';
 import { Link } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { shuffleItems } from '@src/utils';
+import { useAsyncStorage } from '@src/hooks/useAsyncStorage';
 
 export default function Index() {
   const [activeFilter, setActiveFilter] = useState<string>('');
+  const [_, setFavoriteIds] = useAsyncStorage<string[]>('favorites', []);
+
+  useEffect(() => {
+    const favoriteIds = movies.filter((movie) => {
+      return movie.favorite;
+    }).map((movie) => {
+      return movie.id;
+    });
+
+    setFavoriteIds(favoriteIds);
+  }, []);
 
   function getUnfinishedMovies() {
     return movies.filter((movie) => {
