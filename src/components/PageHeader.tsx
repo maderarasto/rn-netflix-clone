@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ViewStyle, RegisteredStyle, StyleProp } from 'react-native'
+import { View, StyleSheet, ViewStyle, StyleProp } from 'react-native'
 import React from 'react'
 
 type HeaderOptions = {

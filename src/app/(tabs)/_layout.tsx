@@ -1,9 +1,7 @@
 import React from 'react';
-import {Entypo, Feather, FontAwesome, Ionicons} from '@expo/vector-icons';
+import {Entypo, Feather, FontAwesome} from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import { Image, StyleSheet, ToastAndroid, View } from 'react-native';
-
-import Colors from '@src/constants/Colors';
+import { Image, StyleSheet } from 'react-native';
 import { useColorScheme } from '@src/components/useColorScheme';
 
 

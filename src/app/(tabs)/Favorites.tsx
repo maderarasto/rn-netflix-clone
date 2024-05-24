@@ -1,12 +1,10 @@
+import { StyleSheet, View, Text, ScrollView, Dimensions } from 'react-native';
+import { useFocusEffect } from 'expo-router';
+import { useCallback } from 'react';
+
 import MovieCard from '@src/components/MovieCard';
 import { useAsyncStorage } from '@src/hooks/useAsyncStorage';
-import { Movie, Nullable } from '@src/types';
-import { useCallback, useEffect, useState } from 'react';
-import { StyleSheet, View, Text, ScrollView, Dimensions } from 'react-native';
-
 import movies from '../../../assets/data.json';
-import { useIsFocused } from '@react-navigation/native';
-import { useFocusEffect } from 'expo-router';
 
 export default function Favorites() {
   const [favoriteIds, _, refreshFavoriteIds] = useAsyncStorage<string[]>('favorites', []);

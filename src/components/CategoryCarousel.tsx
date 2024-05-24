@@ -1,8 +1,5 @@
 import { View, Text, ScrollView, StyleSheet, RegisteredStyle, TextStyle, StyleProp, ViewStyle } from 'react-native'
 import React from 'react'
-import MovieCard from './MovieCard'
-import { Href, Link, LinkProps } from 'expo-router'
-import { Movie } from '@src/types'
 
 type CategoryCarouselParams = {
   containerStyle?: StyleProp<ViewStyle>
@@ -11,8 +8,6 @@ type CategoryCarouselParams = {
 }
 
 const CategoryCarousel = ({
-  title,
-  href = '/',
   containerStyle = {},
   header,
   children,

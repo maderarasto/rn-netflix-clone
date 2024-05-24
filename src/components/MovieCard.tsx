@@ -1,10 +1,10 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Movie } from "@src/types";
 import { ORIGIN } from "@src/config";
 import Rating from "./Rating";
 import { formatNumber } from "@src/utils";
-import { useNavigation, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 
 type MovieCardParams = {
   movie: Movie;

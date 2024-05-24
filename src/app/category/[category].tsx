@@ -4,12 +4,14 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import { Feather, Ionicons } from '@expo/vector-icons'
+
 import PageHeader from '@src/components/PageHeader'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
-import movies from '../../../assets/data.json';
-import { shuffleItems } from '@src/utils'
 import MovieCard from '@src/components/MovieCard'
+import { shuffleItems } from '@src/utils'
+import { Colors } from 'react-native/Libraries/NewAppScreen'
 import { Movie } from '@src/types'
+
+import movies from '../../../assets/data.json';
 
 const CategoryPage = () => {
   const [shuffledMovies, setShuffledMovies] = useState<Movie[]>([]);

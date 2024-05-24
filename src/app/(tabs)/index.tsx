@@ -1,11 +1,10 @@
 import Filter from '@src/components/Filter';
 import MovieSlide from '@src/components/MovieSlide';
 import { useEffect, useState } from 'react';
-import { Text, ScrollView, StyleSheet, View, Dimensions } from 'react-native';
+import { Text, ScrollView, StyleSheet, View } from 'react-native';
 import movies from '../../../assets/data.json';
 import CategoryCarousel from '@src/components/CategoryCarousel';
 import MovieCard from '@src/components/MovieCard';
-import { Fontisto } from '@expo/vector-icons';
 import Colors from '@src/constants/Colors';
 import { Link } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';

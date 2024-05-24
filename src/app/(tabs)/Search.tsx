@@ -1,12 +1,12 @@
 import { Feather } from '@expo/vector-icons';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ActivityIndicator, ScrollView, StyleProp, StyleSheet,  TextInput, View, ViewStyle } from 'react-native';
 
-import movies from '../../../assets/data.json';
-import { Movie } from '@src/types';
 import MovieCard from '@src/components/MovieCard';
 import { useDebounce } from '@src/hooks/useDebounce';
 import Colors from '@src/constants/Colors';
+import { Movie } from '@src/types';
+import movies from '../../../assets/data.json';
 
 export default function Search() {
   const [foundMovies, setFoundMovies] = useState<Movie[]>([]);

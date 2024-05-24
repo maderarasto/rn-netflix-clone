@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Dimensions, ImageSourcePropType } from 'react-native'
 import React from 'react'
-import {ClipPath, Defs, Image, Path, Polygon, Rect, Svg} from 'react-native-svg';
+import {ClipPath, Defs, Image, Path, Svg} from 'react-native-svg';
 
 type MovieCoverParams = {
   imageSource: string | ImageSourcePropType
