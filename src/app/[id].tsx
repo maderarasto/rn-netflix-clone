@@ -75,8 +75,6 @@ const MovieDetails = () => {
   }
 
   function onScroll(ev: NativeSyntheticEvent<NativeScrollEvent>) {
-
-
     setScrollDown(ev.nativeEvent.contentOffset.y > 0);
   }
 
