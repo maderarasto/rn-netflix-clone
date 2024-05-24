@@ -7,7 +7,7 @@ This project is mobile cross-platform application based on netflix developed by 
 This project serves for learning purposes and to present my skills with **React** and **Typescript**.
 
 ## Features
-- main screens divided to tabs
+:arrow_right: main screens divided to tabs
 - data loaded from local JSON
 - categories with horizontal scrolls
 - managing favorites (reseting after application is closed)
