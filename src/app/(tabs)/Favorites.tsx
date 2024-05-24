@@ -7,13 +7,15 @@ import { StyleSheet, View, Text, ScrollView, Dimensions } from 'react-native';
 import movies from '../../../assets/data.json';
 
 export default function Favorites() {
-  const [favoriteIds, setFavoriteIds] = useAsyncStorage<string[]>('favorites', []);
+  const [favoriteIds] = useAsyncStorage<string[]>('favorites', []);
+
+  useEffect(() => {
+    console.log(favoriteIds);
+  }, [favoriteIds])
 
   function getFavorites() {
     return favoriteIds ? movies.filter((movie) => favoriteIds.includes(movie.id)) : [];
   }
-
-  console.log(getFavorites());
 
   return (
     <ScrollView contentContainerStyle={styles.container}>

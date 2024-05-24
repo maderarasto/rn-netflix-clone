@@ -17,10 +17,12 @@ import MovieGallery, { MovieGalleryMethods } from '@src/components/MovieGallery'
 
 import movies from '../../assets/data.json';
 import { ORIGIN } from '@src/config'
+import { useAsyncStorage } from '@src/hooks/useAsyncStorage'
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState<Movie|null>(null);
   const [scrollDown, setScrollDown] = useState(false);
+  const [favoriteIds, setFavoriteIds] = useAsyncStorage<string[]>('favorites', []);
 
   const galleryRef = useRef<MovieGalleryMethods>(null);
   const {id} = useLocalSearchParams();
@@ -39,6 +41,18 @@ const MovieDetails = () => {
 
     setMovie(foundMovie);
   }, []);
+
+  // useEffect(() => {
+  //   console.log(favoriteIds);
+  // }, [favoriteIds]);
+
+  function isFavorite() {
+    if (!movie) {
+      return false;
+    }
+
+    return favoriteIds?.includes(movie.id) ?? false;
+  }
 
   function resolveHeaderStyle() {
     const headerStyle: StyleProp<ViewStyle> = {
@@ -66,6 +80,22 @@ const MovieDetails = () => {
     setScrollDown(ev.nativeEvent.contentOffset.y > 0);
   }
 
+  function onHeartButtonPress() {
+    if (!movie || !favoriteIds) {
+      return;
+    }
+
+    const ids = [...favoriteIds];
+
+    if (isFavorite()) {
+      ids.splice(favoriteIds.indexOf(movie.id), 1);
+    } else {
+      ids.push(movie.id);
+    }
+
+    setFavoriteIds(ids);
+  }
+
   function openScreenshot(screenshotIndex: number) {
     galleryRef.current?.openGallery(screenshotIndex);
   }
@@ -88,7 +118,9 @@ const MovieDetails = () => {
               <Image source={require('../../assets/images/netflix_logo.png')} style={styles.headerTitleImage} />
             ),
             headerRight: () => (
-              <Ionicons name="heart-outline" size={28} color={Colors.light.primary} />
+              <TouchableOpacity onPress={onHeartButtonPress}>
+                <Ionicons name={isFavorite() ? 'heart' : 'heart-outline'} size={28} color={Colors.light.primary} />
+              </TouchableOpacity>
             )
         }} />
         <ScrollView contentContainerStyle={styles.scrollContentContainer} onScroll={onScroll}>
