@@ -5,14 +5,14 @@ import { Nullable } from "@src/types";
 
 type Setter<T> = (value: T) => void;
 
-export function useAsyncStorage<T>(storageKey: string, defaultValue: T): [Nullable<T>, Setter<T>] {
+export function useAsyncStorage<T>(storageKey: string, defaultValue: T): [Nullable<T>, Setter<T>, Function] {
     const [storageValue, setStorageValue] = useState<Nullable<T>>(null);
 
     useEffect(() => {
-        initializeStorageItem();
+        loadStorageItem();
     }, []);
 
-    async function initializeStorageItem() {
+    async function loadStorageItem() {
         const stringValue = await AsyncStorage.getItem(storageKey);
 
         if (!stringValue) {
@@ -36,5 +36,9 @@ export function useAsyncStorage<T>(storageKey: string, defaultValue: T): [Nullab
         setStorageValue(value);
     }
 
-    return [storageValue, setStorageItem];
+    async function refreshStorageItem() {
+        return loadStorageItem();
+    }
+
+    return [storageValue, setStorageItem, refreshStorageItem];
 }
