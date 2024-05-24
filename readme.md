@@ -7,18 +7,18 @@ This project is mobile cross-platform application based on netflix developed by 
 This project serves for learning purposes and to present my skills with **React** and **Typescript**.
 
 ## Features
-:arrow_right: main screens divided to tabs
-- data loaded from local JSON
-- categories with horizontal scrolls
-- managing favorites (reseting after application is closed)
-- each movie has own details page with screenshot gallery
+:arrow_right: Main screens divided to tabs<br />
+:arrow_right: Data loaded from local JSON<br />
+:arrow_right: Categories with horizontal scrolls<br />
+:arrow_right: Managing favorites (reseting after application is closed)<br />
+:arrow_right: Each movie has own details page with screenshot gallery<br />
 
 ## What I have learned
-- folder based routing
-- custom hooks
-- async storage
-- refs and imperative handles for controlling components
-- svg paths
+:blue_book: Folder based routing<br />
+:blue_book: Custom hooks<br />
+:blue_book: Async storage<br />
+:blue_book: Refs and imperative handles for controlling components<br />
+:blue_book: SVG paths<br />
 
 ## Configuration
 This is [Node.js](https://nodejs.org/en) project, so before installing [download and install latest Node.js](https://nodejs.org/en/download/current). After installation you can install project dependencie with command:
